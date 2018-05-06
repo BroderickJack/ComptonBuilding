@@ -40,10 +40,10 @@
        var i = 0;
        var l = remodelTypes.length;
        var row_div = document.getElementById('content');
-       
+      
        for(; i < l;) {
          var col_div = document.createElement('div');
-         col_div.className = 'col-xs012 col-sm-5';
+         col_div.className = 'col-xs-12 col-sm-5';
          row_div.appendChild(col_div);
          
          var selection_div = document.createElement('div');
@@ -56,32 +56,38 @@
          
          console.log("here");
          
-         var image = document.createElement('img');
+        var image = document.createElement('img');
          /*image.src = "http://www.google.com/intl/en_com/images/logo_plain.png";*/
-         image.src = "{{ url_for('static', filename='images/" + pagePictures[i] +"') }}";
+         image.src = "getImage/" + pagePictures[i];
+         image.className = "actualImage";
+         
+         image_div.appendChild(image);
          
          image_div.appendChild(image);
          
          console.log("Here");
+         console.log(remodelTypes[i] + "\n");
          
          var selection_label = document.createElement('div');
          selection_label.className = 'selection-label';
          selection_div.appendChild(selection_label);
          
-         var hrefString = "{{ url_for(" + remodel_types[i] + ")}}";
+         var remodelTyp = remodelTypes[i];
+         var hrefString = "remodelType/" + remodelTypes[i];
          console.log(hrefString);
-         var a = document.createElement('a');
-         a.innerHTML = `<h3> ${remodel_types[i]} </h3>`;
-         //a.href = "{{ url_for(" + remodel_types[i] +") }}";
-         a.href = hrefString;
-         selection_label.appendChild(a);
          
+         console.log("Here");
+         
+         var a = document.createElement('a');
+         a.innerHTML = `<h3> ${remodelTypes[i]} </h3>`;
+         a.href = hrefString;
+         selection_label.appendChild(a);       
          i++;
        }
+  
      </script>
 
 
     </div>
-    <!--<p id="hello" > </p>-->
 
    </body>

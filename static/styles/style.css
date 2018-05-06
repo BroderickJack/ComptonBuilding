@@ -24,6 +24,10 @@
     /*line-height: 200px;*/
 }
 
+.actualImage {
+    width:100%;
+}
+
 a {
     color:white;
     font-size:26px;

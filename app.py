@@ -1,5 +1,5 @@
 # Web application for running the Compton Building & Remodling Site
-from flask import Flask, render_template, json
+from flask import Flask, render_template, json, send_file
 from random import randint
 
 app = Flask(__name__)
@@ -69,6 +69,16 @@ def bathrooms():
 def kitchenA():
     return render_template('kitchenA.html')
 
+@app.route('/remodelType/<string:remodelType>')
+def rooms(remodelType):
+    print('The room requested is: ', remodelType)
+    return render_template(remodelType + '.html')
+
+@app.route('/getImage/<string:imageName>')
+def getImage(imageName):
+    print('Returning image: ', imageName)
+    return send_file('static/images/' + imageName, mimetype='image/jpeg')
+
 @app.route('/homeTest')
 def homeTest():
     pagePictures = []
@@ -84,10 +94,8 @@ def homeTest():
         print('The pictures')
         print(typePictures)
         pagePictures.append(pictures[index])
-        
-    
-        
-        
+         
+    # return render_template('javascript_home.html')     
     return render_template('javascript_home.html', remodelTypes=remodelTypes, pagePictures=pagePictures)
 
 @app.route('/bathroom_test')
