@@ -1,0 +1,48 @@
+/*.selection-box {
+    border: 1px solid black;
+    padding: 5px;
+    margin: 1px;
+}*/
+
+.selection-label {
+    text-align: center;
+    /*border: 1px solid;*/
+    margin: auto;
+    /*line-height: 300px;*/
+}
+
+.container {
+    width: 100%;
+    background-color: rgb(44, 71, 112);
+}
+
+.selection-box {
+    border: 2px solid black;
+    padding: 30px;
+    /*background-color: rgba(6, 20, 57, 0.5); */
+    background-color: rgb(123, 133, 173);
+    /*line-height: 200px;*/
+}
+
+a {
+    color:white;
+    font-size:26px;
+}
+
+/*.selecton-text {
+    line-height: 200px;
+    padding: 30px;
+}
+*/
+/* Add spacing when the columns are stacked */
+@media (max-width: 768px) {
+    [class*="col-"] {
+        margin-bottom: 15px;
+    }
+}
+
+/* Change the text color */
+body {
+    color: white;
+}
+

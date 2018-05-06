@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>Compton Building and Remodeling</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='styles/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+    
+    <!-- Adding custom styling -->
+    <link href="{{ url_for('static', filename='styles/style.css') }}" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="{{ url_for('static',filename='styles/ie10-viewport-bug-workaround.css') }}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='styles/grid.css') }}" rel="stylesheet">
+
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="page-header">
+        <h1>Kitchen A</h1>
+        <!--<p class="lead">Example Gallery</p>-->
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-5">
+          <div class="selection-box">
+            <div class="image">
+              <img src="{{ url_for('static', filename='images/kitchenA1.jpg') }}" alt="Kitchen Example" width="100%"> 
+            </div>
+            <!--<div class="selection-label">-->
+            <!--    <div class="selection-text"> Kitchens </div>-->
+            <!--    <a href="{{ url_for('kitchens') }}" <h3> Kitchens </h3> </a>-->
+            <!--</div>-->
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-5 col-sm-offset-2">
+          <div class="selection-box">
+            <div class="image">
+                <img src="{{ url_for('static', filename='images/kitchenA2.jpg') }}" alt="Kitchen Example" width="100%"> 
+            </div>
+            <!--<div class="selection-label">-->
+            <!--  <a href="{{url_for('bathrooms') }}" <h3> Bathrooms </h3> </a>-->
+            <!--</div>-->
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>
+
