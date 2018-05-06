@@ -9,11 +9,11 @@ VERBOSE = True
 def printPictures(pictureDict):
     print('Compton Building and Remodeling Pictures')
     for remodelType, typeNames in pictureDict.items():
-        print(remodelType)
+        print('\t' + remodelType)
         for project, projectPictures in typeNames.items():
-            print('\t' + project)
+            print('\t\t' + project)
             for picture in projectPictures:
-                print('\t\t' + picture)
+                print('\t\t\t' + picture)
 
 
 bathroomNames = ['Bathroom A']
@@ -23,6 +23,7 @@ remodelPictures = dict()
 
 bathroomPictures = dict()
 kitchenPictures = dict()
+remodelNames = dict()
 
 bathroomPictures['Bathroom A'] = []
 bathroomPictures['Bathroom A'].append('bathroom2.jpeg')
@@ -38,6 +39,8 @@ kitchenPictures['Kitchen C'].append('kitchen_example.jpeg')
 
 remodelPictures['Bathrooms'] = bathroomPictures
 remodelPictures['Kitchens'] = kitchenPictures
+remodelNames['Bathrooms'] = bathroomNames
+remodelNames['Kitchens'] = kitchenNames
 # for i in range(0, len(remodelTypes)):
 #     remodelName = remodelTypes[i]
 #     # Check if the list already exits
@@ -72,7 +75,8 @@ def kitchenA():
 @app.route('/remodelType/<string:remodelType>')
 def rooms(remodelType):
     print('The room requested is: ', remodelType)
-    return render_template(remodelType + '.html')
+    remodelNames_ = remodelNames[remodelType]
+    return render_template('remodelType.html', remodelType=remodelType, remodelNames=remodelNames_)
 
 @app.route('/getImage/<string:imageName>')
 def getImage(imageName):
@@ -97,6 +101,14 @@ def homeTest():
          
     # return render_template('javascript_home.html')     
     return render_template('javascript_home.html', remodelTypes=remodelTypes, pagePictures=pagePictures)
+
+@app.route('/remodelType/<string:remodelType>/<string:remodelName>')
+def remodel(remodelType, remodelName):
+    print('Requesting page for a specific remodel')
+    
+    remodelImages = remodelPictures[remodelType][remodelName]
+    return render_template('remodel.html', remodelImages=remodelImages)
+    
 
 @app.route('/bathroom_test')
 def test():
