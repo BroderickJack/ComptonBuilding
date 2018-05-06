@@ -40,6 +40,7 @@
         
       var i = 0;
       var remodelNames = {{ remodelNames|safe }};
+      var imageNames = {{ imageNames|safe }};
        
        var i = 0;
        var l = remodelNames.length;
@@ -59,8 +60,10 @@
          selection_div.appendChild(image_div);
          
          var image = document.createElement('img');
+         image.className = 'actualImage';
          /*image.src = "http://www.google.com/intl/en_com/images/logo_plain.png";*/
-         image.src = "{{ url_for('static', filename='images/kitchen_example.jpeg') }}";
+         /* THIS NEEDS TO CHANGE */
+         image.src = "/static/images/" + imageNames[i];
          image_div.appendChild(image);
          
          var selection_label = document.createElement('div');

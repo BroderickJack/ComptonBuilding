@@ -1,5 +1,5 @@
 # Web application for running the Compton Building & Remodling Site
-from flask import Flask, render_template, json, send_file
+from flask import Flask, render_template, json, send_file, url_for
 from random import randint
 
 app = Flask(__name__)
@@ -72,16 +72,14 @@ def bathrooms():
 def kitchenA():
     return render_template('kitchenA.html')
 
-@app.route('/remodelType/<string:remodelType>')
-def rooms(remodelType):
-    print('The room requested is: ', remodelType)
-    remodelNames_ = remodelNames[remodelType]
-    return render_template('remodelType.html', remodelType=remodelType, remodelNames=remodelNames_)
-
 @app.route('/getImage/<string:imageName>')
 def getImage(imageName):
     print('Returning image: ', imageName)
     return send_file('static/images/' + imageName, mimetype='image/jpeg')
+
+@app.route('/imageURL')
+def getImageURL():
+    return url_for('static/images')
 
 @app.route('/homeTest')
 def homeTest():
@@ -102,13 +100,34 @@ def homeTest():
     # return render_template('javascript_home.html')     
     return render_template('javascript_home.html', remodelTypes=remodelTypes, pagePictures=pagePictures)
 
+@app.route('/remodelType/<string:remodelType>')
+def rooms(remodelType):
+    print('The room requested is: ', remodelType)
+    remodelNames_ = remodelNames[remodelType]
+    
+    # Get the cover image
+    pagePictures = []
+    # Get a random name for each type
+    i = 0
+    for remodelName, remodelPicture in remodelPictures[remodelType].items():
+        # Number of pictures in each type
+        # Get the first set of pictures
+        print(str(i));
+        print('remodelName: ' + remodelName)
+        print(remodelPicture)
+        length = len(remodelPicture)
+        print('Length: ' + str(length))
+        index = randint(0, length-1)
+        pagePictures.append(remodelPicture[index])
+    
+    return render_template('remodelType.html', remodelType=remodelType, remodelNames=remodelNames_, imageNames = pagePictures)
+
 @app.route('/remodelType/<string:remodelType>/<string:remodelName>')
 def remodel(remodelType, remodelName):
-    print('Requesting page for a specific remodel')
+    print('Remodel Type: ' + remodelType + '\n\tRemodel Name: ' + remodelName)
     
     remodelImages = remodelPictures[remodelType][remodelName]
-    return render_template('remodel.html', remodelImages=remodelImages)
-    
+    return render_template('remodel.html', remodelImages=remodelImages, remodelName=remodelName)    
 
 @app.route('/bathroom_test')
 def test():
@@ -116,4 +135,5 @@ def test():
 
 if __name__ == "__main__":
     # Have the server restart on code change
+    print(app.instance_path)
     app.run(debug=True)

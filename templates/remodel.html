@@ -34,15 +34,15 @@
       </div>
       <div class="row" id="content"> </div>
       <script type="text/javascript">
-        remodelType = "{{ remodelType | safe }}";
-        document.getElementById('title').innerHTML = "{{ remodelType|safe }}";
-        
+        remodelType = "{{ remodelName | safe }}";
+        document.getElementById('title').innerHTML = "{{ remodelName|safe }}";
+
         
       var i = 0;
-      var remodelNames = {{ remodelNames|safe }};
+      var remodelImages = {{ remodelImages|safe }};
        
        var i = 0;
-       var l = remodelNames.length;
+       var l = remodelImages.length;
        var row_div = document.getElementById('content');
        
        for(; i < l;) {
@@ -59,18 +59,11 @@
          selection_div.appendChild(image_div);
          
          var image = document.createElement('img');
+         image.className = 'actualImage';
          /*image.src = "http://www.google.com/intl/en_com/images/logo_plain.png";*/
-         image.src = "{{ url_for('static', filename='images/kitchen_example.jpeg') }}";
+         /* THIS NEEDS TO CHANGE */
+         image.src = "/static/images/" + remodelImages[i];
          image_div.appendChild(image);
-         
-         var selection_label = document.createElement('div');
-         selection_label.className = 'selection-label';
-         selection_div.appendChild(selection_label);
-         
-         var a = document.createElement('a');
-         a.innerHTML = `<h3> ${remodelNames[i]} </h3>`;
-         a.href = remodelType + "/" + remodelNames[i];
-         selection_label.appendChild(a);
          
          i++;
        }
