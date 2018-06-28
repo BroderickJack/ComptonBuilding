@@ -56,9 +56,9 @@ if VERBOSE:
 def hello_world():
     return 'Hello, World!'
 
-@app.route('/ComptonBuilding')
-def compton_building_homepage():
-    return render_template('index.html')
+# @app.route('/ComptonBuilding')
+# def compton_building_homepage():
+#     return render_template('index.html')
 
 @app.route('/kitchens')
 def kitchens():
@@ -81,7 +81,7 @@ def getImage(imageName):
 def getImageURL():
     return url_for('static/images')
 
-@app.route('/homeTest')
+@app.route('/ComptonBuilding')
 def homeTest():
     pagePictures = []
     # Get a random name for each type
